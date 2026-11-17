@@ -86,3 +86,19 @@ def human_reference(table: pd.DataFrame) -> np.ndarray:
     """Average over countries: an approximation of the global human profile
     (the paper's global estimate pools all respondents, so it differs a bit)."""
     return table[DIMENSIONS].mean().values
+
+
+CLUSTER_NAMES = {0: "Western", 1: "Eastern", 2: "Southern"}
+
+
+def load_cluster_map(path: str) -> pd.Series:
+    """Official cultural clusters of Awad et al. (country_cluster_map.csv on OSF):
+    ISO3 -> 'Western' / 'Eastern' / 'Southern' (0 / 1 / 2 in the file)."""
+    m = pd.read_csv(path)
+    return m.set_index("ISO3")["Cluster"].map(CLUSTER_NAMES).rename("cluster")
+
+
+def country_names(path: str) -> dict:
+    """ISO3 -> country name, from the same file."""
+    m = pd.read_csv(path)
+    return dict(zip(m.ISO3, m.Country))

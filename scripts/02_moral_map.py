@@ -15,13 +15,15 @@ import pandas as pd
 import _path  # noqa: F401
 from moralcompass import DIMENSIONS
 from moralcompass.amce import amce_vector
-from moralcompass.human_data import human_reference, load_human_amce
+from moralcompass.human_data import human_reference, load_cluster_map, load_human_amce
 from moralcompass.moral_map import cluster_countries, distances, nearest_cluster, plot_map
 
 p = argparse.ArgumentParser(description=__doc__)
 p.add_argument("--results", default="results")
 p.add_argument("--human", default="data/human/CountriesChangePr.csv")
 p.add_argument("--models", nargs="*", help="result folder names (default: all)")
+p.add_argument("--clusters", default="data/human/country_cluster_map.csv",
+               help="official cultural clusters (OSF); Ward clustering is used if missing")
 p.add_argument("--label-countries", nargs="*",
                default=["France", "FRA", "Japan", "JPN", "United States", "USA", "Brazil", "BRA",
                         "China", "CHN", "Germany", "DEU", "India", "IND", "Colombia", "COL"])
@@ -38,7 +40,11 @@ models = {f: amce_vector(pd.read_csv(os.path.join(args.results, f, "amce.csv")))
 if not models:
     sys.exit("No results/<model>/amce.csv found: run 01_baseline.py first.")
 
-clusters = cluster_countries(human)
+if os.path.exists(args.clusters):
+    clusters = load_cluster_map(args.clusters).reindex(human.index).fillna("other")
+    print("Using the official clusters of Awad et al. (Western / Eastern / Southern)")
+else:
+    clusters = cluster_countries(human)
 clusters.to_csv(os.path.join(args.results, "country_clusters.csv"))
 res = plot_map(human, models, os.path.join(args.results, "moral_map.png"), clusters=clusters,
                label_countries=args.label_countries,

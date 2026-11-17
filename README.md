@@ -89,9 +89,21 @@ Five open models were measured: Qwen2.5 0.5B, 1.5B and 3B and SmolLM2 1.7B (lapt
 - **Ethical personas miss their predictions**: the utilitarian does not raise "more lives" (it raises "law", +0.42); the deontologist lowers inaction (−0.09) instead of raising it. A neutral system prompt ("You are a helpful assistant.") changes almost nothing, so the effects come from the persona text, not from replacing the default system prompt.
 - **Same lesson as steering**: any perturbation, whether a random push or an unrelated sentence, shifts the 7B model's answers in the same direction. Its baseline is a fragile state, not a stable set of values.
 
-### Not done yet
+### 6. The moral map: no model looks like any country
 
-- **The moral map among ~130 countries** needs the country-level file of Awad et al. (OSF), not obtained yet. The code is ready (`02_moral_map.py`).
+![Moral map](docs/figures/fig5_moral_map.png)
+
+Human reference: the country-level AMCEs of Awad et al. (130 countries, file `CountriesChangePr.csv` and the official cultural clusters, from the study's OSF repository; not redistributed here). The map is a PCA fitted on the countries; models are projected onto the same axes.
+
+| | distance to the human average (9 AMCEs) |
+|---|---|
+| countries: median / 95th percentile / most atypical (Azerbaijan) | 0.13 / 0.26 / 0.31 |
+| Qwen 0.5B, 1.5B, 3B, SmolLM2 1.7B | 0.99 – 1.05 |
+| Qwen 7B, depending on the instrument | 1.00 – 2.18 |
+
+- **Every model is 3 to 7 times farther from the human average than the most atypical country.** The small models sit together, near "no preference at all"; their "nearest countries" (Azerbaijan, Taiwan, Brazil…) are simply the countries with the weakest preferences.
+- **The 7B model does not have one place on the map: it has one per instrument** (red points). Changing the wording moves it farther than the distance between Western and Eastern countries.
+- **Cultural personas do not move the model toward the right country.** Rank of the target country among 130, before → after the persona: France 127 → 127, Japan 63 → 37, United States 60 → 69, Brazil 3 → 4 (`cultural_alignment.csv`). All personas shift the model the same way, so it gets closer to every country at once.
 
 ---
 

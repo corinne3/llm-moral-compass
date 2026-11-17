@@ -54,9 +54,9 @@ def distances(human: pd.DataFrame, vec: np.ndarray) -> pd.Series:
 
 def nearest_cluster(human: pd.DataFrame, clusters: pd.Series, vec: np.ndarray) -> dict:
     out = {}
-    for c in sorted(clusters.unique()):
+    for c in sorted(clusters.unique(), key=str):
         centroid = human.loc[clusters == c, DIMENSIONS].mean().values
-        out[int(c)] = float(np.sqrt(((centroid - vec) ** 2).sum()))
+        out[c if isinstance(c, str) else int(c)] = float(np.sqrt(((centroid - vec) ** 2).sum()))
     return out
 
 
@@ -78,9 +78,15 @@ def plot_map(human: pd.DataFrame, models: dict, path: str, clusters: pd.Series |
     m = fit_map(human)
     xy = project(m, human[DIMENSIONS].values)
     fig, ax = plt.subplots(figsize=(8, 6.5))
-    colors = None if clusters is None else clusters.values
-    ax.scatter(xy[:, 0], xy[:, 1], c=colors, cmap="Set2", s=22, alpha=0.7,
-               edgecolor="none", label="countries (humans)")
+    if clusters is None:
+        ax.scatter(xy[:, 0], xy[:, 1], s=22, alpha=0.6, color="#9aa7b4", edgecolor="none",
+                   label="countries (humans)")
+    else:
+        palette = ["#7fa7d9", "#e3a87a", "#8cc9a5", "#c9a0dc", "#bbbbbb"]
+        for k, c in enumerate(sorted(clusters.unique(), key=str)):
+            m_ = (clusters.values == c)
+            ax.scatter(xy[m_, 0], xy[m_, 1], s=22, alpha=0.75, color=palette[k % len(palette)],
+                       edgecolor="none", label=f"{c} countries" if isinstance(c, str) else f"cluster {c}")
     for name in (label_countries or []):
         if name in human.index:
             i = list(human.index).index(name)

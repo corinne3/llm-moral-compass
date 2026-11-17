@@ -136,6 +136,15 @@
 
 ![persuasion_heatmap.png](persuasion_heatmap.png)
 
+### Cultural prompting
+
+| country       |   rank_before |   rank_after |   dist_before |   dist_after |   n_countries |
+|:--------------|--------------:|-------------:|--------------:|-------------:|--------------:|
+| France        |           127 |          127 |         1.399 |        1.249 |           130 |
+| Japan         |            63 |           37 |         1.275 |        1.099 |           130 |
+| United States |            60 |           69 |         1.273 |        1.145 |           130 |
+| Brazil        |             3 |            4 |         1.164 |        0.965 |           130 |
+
 ## 4. Emotions inside the model
 
 ![probes.png](probes.png)

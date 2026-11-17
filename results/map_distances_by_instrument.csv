@@ -1,0 +1,13 @@
+who,distance_to_human_average
+countries: median,0.131
+countries: 95th percentile,0.259
+countries: most atypical (AZE),0.31
+Qwen 0.5B,1.047
+Qwen 1.5B,1.029
+Qwen 3B,0.986
+SmolLM2 1.7B,1.048
+Qwen 7B · Case 1/2 (MM),1.279
+Qwen 7B · Case 1/2 ('you decide'),1.269
+Qwen 7B · Option 1/2,0.999
+Qwen 7B · Deaths only,1.233
+Qwen 7B · Name the group,2.181

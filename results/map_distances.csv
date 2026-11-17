@@ -1,0 +1,6 @@
+model,distance_to_human_average,nearest_countries,nearest_cluster,dist_cluster_Eastern,dist_cluster_Southern,dist_cluster_Western
+Qwen2.5-0.5B-Instruct,1.0465903898142268,"AZE, TWN, BRA, MDG, TUR",Eastern,0.999,1.065,1.061
+Qwen2.5-1.5B-Instruct,1.0286553495034632,"AZE, TWN, BRA, TUR, MDG",Eastern,0.981,1.046,1.044
+Qwen2.5-3B-Instruct,0.9863793006880943,"AZE, BRA, TUR, TWN, BOL",Eastern,0.944,0.999,1.002
+Qwen2.5-7B-Instruct,1.122621796041415,"AZE, BRA, MDG, BOL, TUR",Eastern,1.091,1.123,1.14
+SmolLM2-1.7B-Instruct,1.0478814015639142,"AZE, TWN, BRA, MDG, TUR",Eastern,1.0,1.066,1.063

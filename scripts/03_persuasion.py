@@ -35,7 +35,7 @@ args = p.parse_args()
 out = out_dir(args)
 templates = tuple(int(t) for t in args.templates.split(","))
 
-model = get_model(args)
+model = None   # loaded only if a condition still has to be computed
 scen = generate_scenarios(args.n_per_dim, seed=args.seed)
 conds = conditions(args.countries)
 # Resume: conditions already saved in persuasion_raw.csv are not recomputed
@@ -55,6 +55,8 @@ for i, (name, c) in enumerate(conds.items()):
         print(f"[{i + 1}/{len(conds)}] {name}: already done, skipped", flush=True)
         continue
     n = len(scen) * len(templates) * 2
+    if model is None:
+        model = get_model(args)
     print(f"[{i + 1}/{len(conds)}] {name} ({n} prompts)", flush=True)
     with meter(f"persuasion:{name}", args.model, n, os.path.join(out, "energy.csv"), args.cpu_watts):
         r = run_dilemmas(model, scen, templates=templates, system=c["system"],

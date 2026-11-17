@@ -89,9 +89,21 @@ Cinq modèles ouverts ont été mesurés : Qwen2.5 0,5B, 1,5B et 3B et SmolLM2 1
 - **Les personas éthiques ratent leurs prédictions** : l'utilitariste ne fait pas monter « plus de vies » (il fait monter la « loi », +0,42) ; le déontologue fait baisser l'inaction (−0,09) au lieu de la faire monter. Un prompt système neutre (« You are a helpful assistant. ») ne change presque rien : les effets viennent du texte des personas, pas du remplacement du prompt système par défaut.
 - **Même leçon que pour le steering** : toute perturbation, poussée aléatoire ou phrase sans rapport, déplace les réponses du 7B dans le même sens. Son état de base est fragile ; ce n'est pas un ensemble stable de valeurs.
 
-### Pas encore fait
+### 6. La carte morale : aucun modèle ne ressemble à un pays
 
-- **La carte morale parmi ~130 pays** nécessite le fichier par pays d'Awad et al. (OSF), pas encore obtenu. Le code est prêt (`02_moral_map.py`).
+![Carte morale](docs/figures/fig5_moral_map.png)
+
+Référence humaine : les AMCE par pays d'Awad et al. (130 pays, fichier `CountriesChangePr.csv` et groupes culturels officiels, issus du dépôt OSF de l'étude ; non redistribués ici). La carte est une ACP ajustée sur les pays ; les modèles sont projetés sur les mêmes axes.
+
+| | distance à la moyenne humaine (9 AMCE) |
+|---|---|
+| pays : médiane / 95e centile / le plus atypique (Azerbaïdjan) | 0,13 / 0,26 / 0,31 |
+| Qwen 0,5B, 1,5B, 3B, SmolLM2 1,7B | 0,99 – 1,05 |
+| Qwen 7B, selon l'instrument | 1,00 – 2,18 |
+
+- **Chaque modèle est 3 à 7 fois plus loin de la moyenne humaine que le pays le plus atypique.** Les petits modèles sont groupés près de « aucune préférence » ; leurs « pays les plus proches » (Azerbaïdjan, Taïwan, Brésil…) sont simplement les pays aux préférences les plus faibles.
+- **Le 7B n'a pas une place sur la carte, il en a une par instrument** (points rouges). Changer la formulation le déplace plus loin que la distance entre pays occidentaux et orientaux.
+- **Les personas culturelles ne rapprochent pas le modèle du bon pays.** Rang du pays visé parmi 130, avant → après la persona : France 127 → 127, Japon 63 → 37, États-Unis 60 → 69, Brésil 3 → 4 (`cultural_alignment.csv`). Toutes les personas déplacent le modèle de la même façon : il se rapproche de tous les pays à la fois.
 
 ---
 

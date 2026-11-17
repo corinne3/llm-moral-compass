@@ -151,3 +151,71 @@ if os.path.exists(s_path):
     fig.savefig(os.path.join(args.out, "fig4_steering_controls.png"), dpi=150)
     plt.close(fig)
 print("figures written to", args.out)
+
+# ---- fig 5: moral map, with Qwen 7B measured by each instrument ------------------------
+human_path = "data/human/CountriesChangePr.csv"
+if os.path.exists(human_path):
+    from moralcompass.amce import amce_table, amce_vector, scenario_effects  # noqa: E402
+    from moralcompass.human_data import human_reference, load_cluster_map, load_human_amce  # noqa: E402
+    from moralcompass.moral_map import distances, fit_map, project  # noqa: E402
+    from moralcompass.scenarios import generate_scenarios  # noqa: E402
+
+    human, _ = load_human_amce(human_path)
+    cl_path = "data/human/country_cluster_map.csv"
+    clusters = (load_cluster_map(cl_path).reindex(human.index).fillna("other")
+                if os.path.exists(cl_path) else pd.Series("countries", index=human.index))
+    scen = generate_scenarios(50, seed=0)
+
+    def vec(raw, templates):
+        r = raw[raw.template.isin(templates)]
+        return amce_vector(amce_table(scenario_effects(r, scen), n_boot=50))
+
+    points = {}
+    for folder, label in models[:-1]:
+        path = os.path.join(args.results, folder, "baseline_raw.csv")
+        if os.path.exists(path):
+            points[label] = vec(pd.read_csv(path), [0, 1, 2])
+    raw7 = pd.read_csv(os.path.join(big, "baseline_raw.csv"))
+    inst = {0: "Case 1/2 (MM)", 1: "Case 1/2 ('you decide')", 2: "Option 1/2",
+            4: "Deaths only", 5: "Name the group"}
+    p7 = {f"Qwen 7B · {inst[t]}": vec(raw7, [t]) for t in inst if t in raw7.template.unique()}
+
+    m = fit_map(human)
+    xy = project(m, human[DIMENSIONS].values)
+    fig, ax = plt.subplots(figsize=(10, 7.5))
+    pal = {"Western": "#7fa7d9", "Eastern": "#e3a87a", "Southern": "#8cc9a5"}
+    for c in sorted(clusters.unique(), key=str):
+        mk = clusters.values == c
+        ax.scatter(xy[mk, 0], xy[mk, 1], s=18, alpha=0.75, color=pal.get(c, "#bbb"),
+                   edgecolor="none", label=f"{c} countries (humans)")
+    g = project(m, human_reference(human))[0]
+    ax.scatter(*g, marker="D", s=70, color="black", label="human average", zorder=4)
+    marks = "o^sX"
+    for i, (k, v) in enumerate(points.items()):
+        ax.scatter(*project(m, v)[0], marker=marks[i % 4], s=110, color=GREY, edgecolor="black",
+                   label=k, zorder=5)
+    q = np.array([project(m, v)[0] for v in p7.values()])
+    ax.scatter(q[:, 0], q[:, 1], s=120, color=RED, edgecolor="black", zorder=6,
+               label="Qwen 7B, one point per instrument")
+    for (k, _), (x0, y0) in zip(p7.items(), q):
+        ax.annotate(k.split("· ")[1], (x0, y0), fontsize=8, xytext=(6, 4), textcoords="offset points")
+    ev = m["pca"].explained_variance_ratio_
+    ax.set_xlabel(f"PC1 ({ev[0]:.0%} of the variance between countries)")
+    ax.set_ylabel(f"PC2 ({ev[1]:.0%})")
+    ax.set_title("No model looks like any country — and the 7B moves with the instrument")
+    ax.legend(fontsize=7.5, loc="lower right")
+    ax.grid(alpha=0.25)
+    fig.tight_layout()
+    fig.savefig(os.path.join(args.out, "fig5_moral_map.png"), dpi=150)
+    plt.close(fig)
+
+    ref = human_reference(human)
+    dc = distances(human, ref)
+    rows = [{"who": "countries: median", "distance_to_human_average": dc.median()},
+            {"who": "countries: 95th percentile", "distance_to_human_average": dc.quantile(0.95)},
+            {"who": f"countries: most atypical ({dc.index[-1]})", "distance_to_human_average": dc.max()}]
+    for k, v in {**points, **p7}.items():
+        rows.append({"who": k, "distance_to_human_average": float(np.sqrt(((v - ref) ** 2).sum()))})
+    pd.DataFrame(rows).round(3).to_csv(os.path.join(args.results, "map_distances_by_instrument.csv"),
+                                       index=False)
+    print(pd.DataFrame(rows).round(3).to_string(index=False))

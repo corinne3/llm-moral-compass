@@ -6,3 +6,5 @@ __pycache__/
 results/**/*.pkl
 # human data: download it yourself (see README), check its licence before sharing
 data/human/*.csv
+# derived 1:1 from the OSF cluster map (not redistributed)
+results/country_clusters.csv
