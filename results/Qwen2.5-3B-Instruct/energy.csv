@@ -1,0 +1,2 @@
+step,model,n_forward,seconds,sec_per_forward,kwh,wh_per_1000_forward
+baseline,Qwen/Qwen2.5-3B-Instruct,1800,153.45,0.0853,0.003357305006510553,1.8652

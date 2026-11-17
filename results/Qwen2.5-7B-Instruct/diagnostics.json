@@ -1,0 +1,9 @@
+{
+  "position_bias": -0.036628404819845806,
+  "order_consistency": 0.5,
+  "mean_mass": 0.8663296438967696,
+  "min_mass": 4.431260622466013e-05,
+  "n_prompts": 3600,
+  "naive_inaction_order_A_only": 0.037160591952975164,
+  "naive_inaction_order_B_only": 0.18367421123235883
+}

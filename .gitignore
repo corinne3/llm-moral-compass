@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+# regenerable binary outputs (steering directions, activations)
+results/**/*.pkl
+# human data: download it yourself (see README), check its licence before sharing
+data/human/*.csv

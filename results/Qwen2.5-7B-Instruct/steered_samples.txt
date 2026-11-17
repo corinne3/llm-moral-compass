@@ -1,0 +1,24 @@
+=== no steering
+As an AI, I don't have feelings, but I'm ready to assist you with any information or help you need! How can I assist you today?
+
+=== fear (direction, alpha=0.5)
+As an AI, I don't experience feelings, but I'm here to assist you and provide information to the best of my abilities. How can I help you today?
+
+=== anger (direction, alpha=0.5)
+As an AI, I don't experience feelings, but I'm here to assist you with any information or help you need regarding your query or situation. How can I assist you today?
+
+=== hope (direction, alpha=0.5)
+I feel ready and excited to assist you with any questions or tasks you have, and I'm eager to help make your day go smoothly!
+
+=== no steering
+As an AI, I don't have feelings, but I'm ready to assist you with any information or help you need! How can I assist you today?
+
+=== fear (direction, alpha=0.75)
+I understand that feeling out of control and unable to regain a sense of safety and calm. It's a terrifying and overwhelming experience.
+
+=== anger (direction, alpha=0.75)
+I am absolutely livid and utterly enraged! This injustice is driving me to the very core!
+
+=== hope (direction, alpha=0.75)
+I feel optimistic and hopeful about the future, with many positive developments on the horizon.
+

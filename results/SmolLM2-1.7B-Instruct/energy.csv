@@ -1,0 +1,2 @@
+step,model,n_forward,seconds,sec_per_forward,kwh,wh_per_1000_forward
+baseline,HuggingFaceTB/SmolLM2-1.7B-Instruct,1800,94.85,0.0527,0.00206514375668954,1.1473

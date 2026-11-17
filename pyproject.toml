@@ -1,0 +1,13 @@
+[project]
+name = "moralcompass"
+version = "0.1.0"
+description = "Measure, map and steer the moral preferences of small open LLMs with the Moral Machine design"
+authors = [{ name = "Corinne Bergès" }]
+requires-python = ">=3.10"
+license = { text = "MIT" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -1,0 +1,10 @@
+{
+  "n_per_dim": 10,
+  "seed": 0,
+  "layer": 7,
+  "templates": [
+    1,
+    4,
+    6
+  ]
+}

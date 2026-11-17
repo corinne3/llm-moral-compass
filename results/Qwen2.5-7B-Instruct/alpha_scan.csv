@@ -1,0 +1,16 @@
+alpha,method,mass,accuracy,perplexity,sample
+0.0,none,1.0,0.9333333333333333,11.2,"As an AI, I don't experience feelings, but I'm here to help you to the best of my ability!"
+0.02,direction,1.0,0.9333333333333333,11.2,"As an AI, I don't experience feelings, but I'm here to help you to the best of my ability!"
+0.02,random,1.0,0.9333333333333333,11.2,"As an AI, I don't experience feelings, but I'm here to help you to the best of my ability!"
+0.05,direction,1.0,0.9333333333333333,11.1,"As an AI, I don't experience feelings, but I'm here to help you to the best of my ability!"
+0.05,random,1.0,0.9333333333333333,11.2,I'm ready to assist you with any questions or tasks you have!
+0.1,direction,1.0,0.9333333333333333,10.9,"As an AI, I don't experience feelings, but I'm here to assist you to the best of my abilit"
+0.1,random,1.0,0.9333333333333333,11.1,I'm ready to assist you with any questions or tasks you have!
+0.2,direction,1.0,0.9333333333333333,10.7,"As an AI, I don't experience feelings, but I'm here to assist you to the best of my abilit"
+0.2,random,1.0,0.9333333333333333,11.0,I'm ready to assist you with any questions or tasks you have to the best of my ability.
+0.35,direction,1.0,0.9333333333333333,10.5,"As an AI, I don't experience feelings, but I'm here to help you with information and tasks"
+0.35,random,1.0,0.9333333333333333,10.9,I'm feeling ready to provide helpful information and assistance!
+0.5,direction,1.0,0.9,11.1,I'm just a computer program feeling nothing right now.
+0.5,random,1.0,0.9333333333333333,11.0,I feel ready to assist you with any information or task you need.
+1.0,direction,0.0,0.26666666666666666,43.9,I am extremely terrified and out of control.
+1.0,random,0.0,0.5333333333333333,15.3,"As an AI, I don't have feelings or emotions like humans do. I process and analyze data and"

@@ -1,0 +1,25 @@
+step,model,n_forward,seconds,sec_per_forward,kwh,wh_per_1000_forward
+baseline,Qwen/Qwen2.5-7B-Instruct,1800,355.37,0.1974,0.0077636860397861,4.3132
+comprehension,Qwen/Qwen2.5-7B-Instruct,1200,278.45,0.232,0.0060677222821453,5.0564
+baseline,Qwen/Qwen2.5-7B-Instruct,3000,601.67,0.2006,0.0130839736116105,4.3613
+baseline,Qwen/Qwen2.5-7B-Instruct,3600,777.69,0.216,0.016912719878845,4.698
+comprehension,Qwen/Qwen2.5-7B-Instruct,1200,260.88,0.2174,0.0056780191399469,4.7317
+probe_activations,Qwen/Qwen2.5-7B-Instruct,320,11.18,0.0349,0.0002300634611143,0.7189
+steering,Qwen/Qwen2.5-7B-Instruct,9000,2695.17,0.2995,0.0590557817111393,6.5618
+probe_activations,Qwen/Qwen2.5-7B-Instruct,320,12.02,0.0376,0.0002474070904608,0.7731
+steering,Qwen/Qwen2.5-7B-Instruct,9000,2730.52,0.3034,0.0598582067511228,6.6509
+persuasion:baseline,Qwen/Qwen2.5-7B-Instruct,480,74.62,0.1555,0.001663096297569,3.4648
+persuasion:talk_fear,Qwen/Qwen2.5-7B-Instruct,480,99.9,0.2081,0.0022168250173107,4.6184
+persuasion:talk_anger,Qwen/Qwen2.5-7B-Instruct,480,96.98,0.202,0.0021487340231308,4.4765
+persuasion:talk_hope,Qwen/Qwen2.5-7B-Instruct,480,96.76,0.2016,0.0021481346144731,4.4753
+persuasion:persona_utilitarian,Qwen/Qwen2.5-7B-Instruct,480,84.16,0.1753,0.0018674852893748,3.8906
+persuasion:persona_deontologist,Qwen/Qwen2.5-7B-Instruct,480,85.43,0.178,0.0018942900310455,3.9464
+persuasion:persona_care_ethics,Qwen/Qwen2.5-7B-Instruct,480,84.45,0.1759,0.0018724806391505,3.901
+persuasion:country_France,Qwen/Qwen2.5-7B-Instruct,480,82.9,0.1727,0.0018358194964512,3.8246
+persuasion:country_Japan,Qwen/Qwen2.5-7B-Instruct,480,83.08,0.1731,0.0018372232051109,3.8275
+persuasion:country_United States,Qwen/Qwen2.5-7B-Instruct,480,83.16,0.1732,0.0018450075085863,3.8438
+persuasion:country_Brazil,Qwen/Qwen2.5-7B-Instruct,480,83.15,0.1732,0.001842580709547,3.8387
+probe_activations,Qwen/Qwen2.5-7B-Instruct,320,12.87,0.0402,0.0002602636362946,0.8133
+probe_activations,Qwen/Qwen2.5-7B-Instruct,320,11.78,0.0368,0.0002416594320072,0.7552
+persuasion:talk_neutral,Qwen/Qwen2.5-7B-Instruct,480,92.25,0.1922,0.0020501810026421,4.2712
+persuasion:persona_neutral,Qwen/Qwen2.5-7B-Instruct,480,78.44,0.1634,0.0017373547091468,3.6195
