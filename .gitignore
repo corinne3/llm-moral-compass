@@ -8,3 +8,6 @@ results/**/*.pkl
 data/human/*.csv
 # derived 1:1 from the OSF cluster map (not redistributed)
 results/country_clusters.csv
+
+# macOS archive metadata
+__MACOSX/

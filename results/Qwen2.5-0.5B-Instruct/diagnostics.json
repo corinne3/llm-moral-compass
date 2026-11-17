@@ -1,9 +1,9 @@
 {
-  "position_bias": 0.27223318815231323,
+  "position_bias": 0.27223315984999996,
   "order_consistency": 0.0,
-  "mean_mass": 0.9417802691459656,
-  "min_mass": 0.7460653781890869,
+  "mean_mass": 0.9417802741611111,
+  "min_mass": 0.7460654,
   "n_prompts": 1800,
-  "naive_inaction_order_A_only": 0.5343970060348511,
-  "naive_inaction_order_B_only": -0.5545358061790466
+  "naive_inaction_order_A_only": 0.5343968497333333,
+  "naive_inaction_order_B_only": -0.5545357868533333
 }
