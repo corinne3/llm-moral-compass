@@ -277,7 +277,7 @@ La formulation 5 supprime complètement les numéros :
 - On commence la réponse de l'assistant à sa place : *« The group that should be spared is: »*.
 - On calcule la probabilité qu'il continue avec chaque nom de groupe, par exemple `" 2 dogs."` contre `" 1 male doctor and 1 female athlete."`. Par la règle de la chaîne, la probabilité d'un texte de plusieurs tokens est le produit des probabilités de ses tokens :
 
-$$\log P(w_1 \dots w_n \mid x) = \sum_{i=1}^{n} \log P(w_i \mid x, w_{<i}).$$
+$$\log P(w_1 \dots w_n \mid x) = \sum_{i=1}^{n} \log P(w_i \mid x, w_{\lt i}).$$
 
 Les deux noms sont renormalisés l'un par rapport à l'autre, exactement comme « 1 » et « 2 ». C'est la méthode *cloze* utilisée par la plupart des outils d'évaluation de LLM.
 - Le point final marque la fin du nom : un nom ne peut jamais être le début de l'autre.
@@ -424,7 +424,7 @@ Avec 3 formulations, « même sens » arrive par hasard pour environ 1 dimension
 Un déplacement moral qui n'apparaît que lorsque le modèle est cassé n'est pas un déplacement moral. Sous chaque condition de steering, `06_side_effects.py` mesure :
 
 - la **précision sur 30 questions faciles à choix multiple** (capitales, arithmétique, sciences de base), lue par probabilités de tokens comme les dilemmes ;
-- la **perplexité** sur un texte neutre : $\text{PPL} = \exp\big(-\frac{1}{N}\sum_t \log P(t_i \mid t_{<i})\big)$, la « surprise » du modèle devant un anglais normal. Elle grimpe vite quand le réseau est endommagé.
+- la **perplexité** sur un texte neutre : $\text{PPL} = \exp\big(-\frac{1}{N}\sum_i \log P(t_i \mid t_{\lt i})\big)$, la « surprise » du modèle devant un anglais normal. Elle grimpe vite quand le réseau est endommagé.
 
 La plage de steering utile est celle où la précision et la perplexité restent proches de leurs valeurs de référence pendant que les AMCE morales bougent.
 

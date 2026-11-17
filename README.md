@@ -277,7 +277,7 @@ Template 5 removes numbers altogether:
 - The assistant's answer is started for it: *"The group that should be spared is:"*.
 - We compute the probability that it continues with each group name, for example `" 2 dogs."` vs `" 1 male doctor and 1 female athlete."`. By the chain rule, the probability of a multi-token string is the product of the probabilities of its tokens:
 
-$$\log P(w_1 \dots w_n \mid x) = \sum_{i=1}^{n} \log P(w_i \mid x, w_{<i}).$$
+$$\log P(w_1 \dots w_n \mid x) = \sum_{i=1}^{n} \log P(w_i \mid x, w_{\lt i}).$$
 
 The two names are renormalized against each other exactly like "1" and "2". This is the *cloze* scoring used by most LLM benchmark harnesses.
 - The final period marks the end of the name, so one name can never be the beginning of the other.
@@ -424,7 +424,7 @@ With 3 wordings, "same sign" happens by chance for about 1 dimension in 4 ($2 \t
 A moral shift that only appears when the model is broken is not a moral shift. Under each steering condition, `06_side_effects.py` measures:
 
 - **accuracy on 30 easy multiple-choice questions** (capitals, arithmetic, basic science), read by token probabilities like the dilemmas;
-- **perplexity** on neutral text: $\text{PPL} = \exp\big(-\frac{1}{N}\sum_t \log P(t_i \mid t_{<i})\big)$, the model's "surprise" at normal English. It rises quickly when the network is damaged.
+- **perplexity** on neutral text: $\text{PPL} = \exp\big(-\frac{1}{N}\sum_i \log P(t_i \mid t_{\lt i})\big)$, the model's "surprise" at normal English. It rises quickly when the network is damaged.
 
 The useful steering range is where accuracy and perplexity stay close to their baseline values while the moral AMCEs move.
 
